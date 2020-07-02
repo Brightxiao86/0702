@@ -1,0 +1,428 @@
+.searchWrap {
+  width: 100%;
+  height: 106px;
+  border-bottom: 1px solid #c8baaa;
+}
+.searchWrap .search {
+  width: 1476px;
+  height: 106px;
+  margin: 0 auto;
+  overflow: hidden;
+}
+.searchWrap .search .log {
+  width: 220px;
+  height: 26px;
+  margin-top: 28px;
+  font-size: 14px;
+  font-weight: bolder;
+  float: left;
+  margin-left: 65px;
+}
+.searchWrap .search .log img {
+  width: 180px;
+}
+.searchWrap .search .storeName {
+  width: 160px;
+  height: 48px;
+  font-size: 14px;
+  padding-left: 13px;
+  margin-top: 22px;
+  float: left;
+  border-left: 1px solid #f0f0f0;
+}
+.searchWrap .search .storeName p {
+  height: 24px;
+  line-height: 24px;
+}
+.searchWrap .search .storeName p a {
+  color: #000;
+}
+.searchWrap .search .storeName span {
+  width: 56px;
+  height: 18px;
+  line-height: 18px;
+  text-align: center;
+  font-size: 10px;
+  color: #856651;
+  border-radius: 2px;
+  border: 1px solid #e7ba77;
+  background-color: #f4c985;
+  float: left;
+  margin-left: 2px;
+}
+.searchWrap .search .service {
+  display: inline-block;
+  width: 21px;
+  height: 21px;
+  background: url(../img/ww.gif) no-repeat top right;
+  margin-top: 5px;
+  margin-left: 5px;
+}
+.searchWrap .search .describe {
+  width: 175px;
+  height: 47px;
+  float: left;
+  color: #999;
+  margin-top: 22px;
+  padding-left: 30px;
+  border-left: 1px dashed #f0f0f0;
+}
+.searchWrap .search .describe span {
+  color: #ff0036;
+  font-size: 12px;
+  margin-left: 3px;
+  margin-right: 3px;
+}
+.searchWrap .search .describe span:first-child + s {
+  vertical-align: middle;
+  display: inline-block;
+  width: 10px;
+  height: 2px;
+  background-color: red;
+  margin-left: 3px;
+}
+.searchWrap .search .describe img {
+  display: inline-block;
+}
+.searchWrap .search .seek {
+  width: 685px;
+  height: 64px;
+  float: right;
+  padding-top: 18px;
+}
+.searchWrap .search .seek input {
+  width: 417px;
+  height: 38px;
+  font-size: 14px;
+  border: 3px solid #ff0036;
+  border-top: 2px solid #ff0036;
+  border-right: none;
+  padding-left: 11px;
+  float: left;
+}
+.searchWrap .search .seek button {
+  display: block;
+  width: 100px;
+  height: 43px;
+  border: none;
+  font-size: 20px;
+  float: left;
+  color: #fff;
+  margin-right: 3px;
+  background-color: #ff0036;
+}
+.searchWrap .search .seek button:nth-child(3) {
+  background-color: #333333;
+}
+#nav1 {
+  width: 100%;
+  height: 36px;
+  background-color: #ff0036; }
+
+#nav {
+  width: 1230px;
+  height: 36px;
+  margin: auto; }
+
+#nav li a {
+  display: block;
+  float: left;
+  margin-left: 142px;
+  line-height: 36px;
+  font-weight: 800px;
+  color: white; }
+
+.navWrap {
+  width: 100%;
+  height: 30px;
+}
+.navWrap ul {
+  width: 1538px;
+  height: 30px;
+  display: flex;
+  justify-content: space-evenly;
+  margin: 0 auto;
+}
+.navWrap ul li {
+  text-align: center;
+  line-height: 30px;
+}
+.navWrap ul li a {
+  display: block;
+  color: #fff;
+  padding-left: 20px;
+  padding-right: 20px;
+  cursor: pointer;
+}
+
+.showWrap {
+  width: 100%;
+  height: 708px;
+  position: relative;
+  padding-top: 50px;
+}
+.showWrap .show {
+  width: 1213px;
+  height: 708px;
+  position: absolute;
+  left: 10%;
+}
+.showWrap .show .showLeft {
+  width: 524px;
+  height: 522px;
+  float: left;
+  border: 1px solid #f2f2f2;
+  position: relative;
+}
+.showWrap .show .showLeft .medium {
+  width: 523px;
+  height: 523px;
+}
+.showWrap .show .showLeft .medium .zoom {
+  width: 280px;
+  height: 280px;
+  display: none;
+  position: absolute;
+  background-color: rosybrown;
+  background: url(../img/zombj.png);
+}
+.showWrap .show .showLeft .max {
+  width: 523px;
+  height: 523px;
+  position: absolute;
+  display: none;
+  left: 524px;
+  top: 0;
+  z-index: 1;
+}
+.showWrap .show .showLeft .mini {
+  width: 488px;
+  height: 104px;
+  padding-top: 29px;
+  padding-left: 35px;
+  border-top: 1px solid #999999;
+}
+.showWrap .show .showLeft .mini img {
+  display: block;
+  width: 72px;
+  height: 72px;
+  float: left;
+  margin-right: 20px;
+  border: 2px solid transparent;
+  cursor: pointer;
+}
+.showWrap .show .showLeft .mini img:hover {
+  border: 2px solid  #FF6666;
+}
+.showWrap .show .showRight {
+  width: 672px;
+  height: 758px;
+  float: left;
+  padding-left: 15px;
+}
+.showWrap .show .showRight h2 {
+  font-size: 20px;
+  font-weight: bolder;
+  line-height: 24px;
+  margin-left: 37px;
+}
+.showWrap .show .showRight .price {
+  width: 638px;
+  height: 51px;
+  background: url(../img/pricrbj.png) no-repeat;
+  margin-top: 15px;
+  overflow: hidden;
+}
+.showWrap .show .showRight .price span {
+  display: block;
+  height: 24px;
+  color: #ff0036;
+  font-size: 24px;
+  font-weight: bolder;
+  margin-top: 12px;
+  margin-left: 96px;
+}
+.showWrap .show .showRight .freight {
+  width: 612px;
+  height: 36px;
+  border-bottom: 1px dashed #c9c9c9;
+  padding-top: 22px;
+  padding-left: 13px;
+  color: #999;
+}
+.showWrap .show .showRight .freight b {
+  display: inline-block;
+  height: 20px;
+  width: 20px;
+  background: url(../img/down.png) no-repeat;
+  vertical-align: middle;
+}
+.showWrap .show .showRight .freight .site {
+  color: #333;
+  width: 48px;
+  margin-left: 87px;
+  cursor: pointer;
+}
+.showWrap .show .showRight .estimate {
+  display: block;
+  width: 625px;
+  height: 45px;
+  color: #999;
+  text-align: center;
+  font-size: 14px;
+  border-bottom: 1px dashed #c9c9c9;
+}
+.showWrap .show .showRight .estimate span {
+  height: 20px;
+}
+.showWrap .show .showRight .estimate div:first-of-type b {
+  color: #ff0036;
+}
+.showWrap .show .showRight .estimate b {
+  width: 10px;
+  height: 10px;
+  font-weight: bolder;
+  color: #228800;
+  margin-left: 1px;
+}
+.showWrap .show .showRight .estimate div {
+  width: 312px;
+  height: 20px;
+  float: left;
+  margin-top: 16px;
+}
+.showWrap .show .showRight .estimate div:first-of-type {
+  border-right: 1px solid #c9c9c9;
+}
+.showWrap .show .showRight .size {
+  height: 64px;
+  width: 625px;
+  color: #999;
+  display: none;
+}
+.showWrap .show .showRight .size span {
+  float: left;
+  margin-top: 31px;
+  margin-right: 54px;
+}
+.showWrap .show .showRight .color {
+  width: 625px;
+  color: #999;
+  padding-top: 15px;
+  position: relative;
+}
+.showWrap .show .showRight .color b {
+  position: relative;
+  left: 0px;
+  top: -13px;
+  display: inline-block;
+  margin-right: 24px;
+}
+.showWrap .show .showRight .count {
+  height: 54px;
+  width: 625px;
+  color: #999;
+  line-height: 64px;
+}
+.showWrap .show .showRight .count span {
+  height: 54px;
+  float: left;
+  line-height: 54px;
+  margin-right: 52px;
+}
+.showWrap .show .showRight .count input {
+  font-size: 16px;
+  color: #000;
+  width: 52px;
+  height: 37px;
+  margin-top: 13px;
+  text-align: center;
+  float: left;
+  border: 1px solid #a7a6ac;
+}
+.showWrap .show .showRight .count div {
+  float: left;
+  width: 36px;
+  height: 54px;
+}
+.showWrap .show .showRight .count div b {
+  display: block;
+  width: 18px;
+  height: 14px;
+  background: url(../img/down.png) no-repeat;
+  border: 1px solid #a7a6ac;
+  margin-top: 4px;
+  margin-left: 5px;
+}
+.showWrap .show .showRight .count div b:first-of-type {
+  margin-top: 14px;
+  background: url(../img/up1.png) no-repeat;
+}
+.showWrap .show .showRight .count div b i {
+  display: block;
+  float: left;
+}
+.showWrap .show .showRight .buy {
+  width: 485px;
+  height: 150px;
+  padding-top: 28px;
+  padding-left: 88px;
+}
+.showWrap .show .showRight .buy a {
+  float: left;
+  width: 223px;
+  height: 48px;
+  border: 1px solid #ff0036;
+  text-align: center;
+  line-height: 48px;
+  background-color: #ff0036;
+  color: #fff;
+}
+.showWrap .show .showRight .buy a:first-of-type {
+  color: #ff0036;
+  font-size: 18px;
+  margin-right: 13px;
+  background-color: #ffeded;
+}
+.showWrap .show .txtWrap {
+  width: 670px;
+  height: 150px;
+  background-color: #fff;
+  color: #999;
+  font-size: 14px;
+}
+.showWrap .show .txtWrap .txt {
+  height: 84px;
+  line-height: 84px;
+  padding-left: 50px;
+  position: relative;
+}
+.showWrap .show .txtWrap .txt li {
+  float: left;
+}
+.showWrap .show .txtWrap .txt li:nth-child(1) {
+  color: #999999;
+  margin-right: 22px;
+}
+.showWrap .show .txtWrap .txt li:nth-child(2) {
+  margin-right: 45px;
+}
+.showWrap .show .txtWrap .txt li:nth-child(3) {
+  margin-right: 45px;
+}
+.showWrap .show .txtWrap .txt li:nth-child(4) {
+  margin-right: 134px;
+}
+.showWrap .show .txtWrap .txt li:nth-child(5) span {
+  position: absolute;
+  width: 30px;
+  height: 30px;
+  right: 22px;
+  top: 30px;
+  background: url(../img/down.png) no-repeat;
+}
+.showWrap .show .txtWrap .txt li a {
+  color: #666666;
+}
+
+/*# sourceMappingURL=details.css.map */

@@ -1,0 +1,453 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Document</title>
+    <link rel="stylesheet" href="./css/resper.css" />
+    <link rel="stylesheet" href="./css/header.css" />
+    <link rel="stylesheet" href="./css/goodsList.css" />
+    <style>
+      body {
+        zoom: 80%;
+      }
+    </style>
+  </head>
+  <body>
+    <iframe
+      src="./header.html"
+      width="100%"
+      height="40px"
+      scrolling="no"
+      frameborder="0"
+      style="vertical-align: bottom;"
+    ></iframe>
+    <section class="searchWrap">
+      <a class="logo" href="homepage.html"><img src="../img/log3.png" alt=""></a>
+      <div class="search">
+        <input type="text" /><button>搜索</button><b>宝贝</b>
+      </div>
+      <ul class="list">
+        <li>
+          <i><b>全部商品</b><span class="all"></span></i>
+        </li>
+        <li>
+          <i><b>降价商品</b><span>0</span></i>
+        </li>
+        <li>
+          <i><b>库存紧张</b><span>0</span></i>
+        </li>
+      </ul>
+    </section>
+    <div class="th">
+      <input type="checkbox" id="allchecked1" />
+      <label for="allchecked1">全选</label>
+      <ul>
+        <li class="details">商品详情</li>
+        <li class="details">单价</li>
+        <li class="details">数量</li>
+        <li class="details">金额</li>
+        <li class="details">操作</li>
+      </ul>
+    </div>
+    <div class="goodsList"></div>
+    <div class="totalValue">
+      <input type="checkbox" id="allchecked2" />
+      <label for="allchecked2">全选</label>
+      <a href="">删除</a>
+      <a href="">移入收藏夹</a>
+      <a href="">分享</a>
+      <div class="right">
+        <span>已选商品</span>
+        <em class="count">0</em>
+        <span>件</span>
+        <span>合计（不含运费）：</span>
+        <i>￥</i><b class="total">0.00</b>
+        <div class="calculate"><a href="">结算</a></div>
+        
+      </div>
+    </div>
+    <script type="module">
+      import Utils from "./js/Utils.js";
+      //设置变量
+      var search,
+        goodsList,
+        data,
+        inputNum,
+        allchecked1,
+        allchecked2,
+        //单个商品的合计价格
+        amount, 
+        divRight,
+        count,
+        total,
+        all,
+        divWrapList = [],
+        deleList = [],
+        numList = [],
+        numParentList = [],
+        amountList = [];
+      var ckList = [];
+      var inputNumList = [];
+      var datas = location.search.slice(1);
+      console.log(datas);
+      //创建ajax
+      ajax("goodsList", datas);
+      function ajax(type, datas) {
+        var xhr = new XMLHttpRequest();
+        xhr.addEventListener("readystatechange", readystateHandler);
+        xhr.open("POST", "http://localhost:8000/" + type);
+        xhr.send(JSON.stringify(datas));
+        function readystateHandler(e) {
+          if (this.readyState === 4 && this.status === 200) {
+            data = JSON.parse(this.response);
+            init();
+          }
+        }
+      }
+      function init() {
+        //获取搜索框
+        search = document.querySelector(".search input");
+        //添加点击事件
+        // search.addEventListener("click", inputClickHandler);
+        goodsList = document.querySelector(".goodsList");
+        allchecked1 = document.getElementById("allchecked1");
+        allchecked2 = document.getElementById("allchecked2");
+        divRight = document.querySelector(".right");
+        count = document.querySelector(".count");
+        total = document.querySelector(".total");
+        all = document.querySelector(".all");
+        console.log(all);
+        allchecked1.addEventListener("click", allck1ClickHandler);
+        allchecked2.addEventListener("click", allck2ClickHandler);
+        createGoodsList();
+      }
+      //点击放大镜隐藏
+      function inputClickHandler(e) {
+        search.style.background = "unset";
+      }
+      //创建购物车列表
+      function createGoodsList() {
+        divWrapList = [];
+        total.textContent = 0.0;
+        count.textContent = 0;
+        data.forEach(function (item) {
+          var divWrap = createDivWrap();
+          divWrapList.push(divWrap);
+          all.textContent = divWrapList.length;
+          var div1 = createDiv1(item);
+          var div2 = createDiv2(item);
+          var price = createPrice(item);
+          var num = createNum(item);
+          var price1 = createPrice1(item);
+          var dele = createDele();
+          divWrap.appendChild(div1);
+          divWrap.appendChild(div2);
+          divWrap.appendChild(price);
+          divWrap.appendChild(num);
+          divWrap.appendChild(price1);
+          divWrap.appendChild(dele);
+          goodsList.appendChild(divWrap);
+        });
+      }
+      function createDivWrap() {
+        var div = Utils.ce("div", {
+          width: "1536px",
+          height: "160px",
+          borderTop: "1px solid #cccccc",
+        });
+        return div;
+      }
+      //创建多选和图片
+      function createDiv1(item) {
+        var div = Utils.ce("div", {
+          width: "166px",
+          height: "160px",
+          float: "left",
+        });
+        var ck = Utils.ce("input", {
+          width: "16px",
+          height: "16px",
+          border: "none",
+          border: "1px solid #c5c5c5",
+          float: "left",
+          margin: "25px 0 0 31px",
+        });
+        ckList.push(ck);
+        ck.type = "checkbox";
+        ck.checked = item.selected;
+        ck.data = item;
+        ck.addEventListener("click", ckClickHandler);
+        var img = Utils.ce("img", {
+          width: "100px",
+          height: "100px",
+          border: "1px solid #c5c5c5",
+          float: "left",
+          margin: "25px 0 0 14px",
+        });
+        img.src = "./img/" + item.imgsrc;
+        div.appendChild(ck);
+        div.appendChild(img);
+        return div;
+      }
+      //创建图片详情
+      function createDiv2(item) {
+        var p = Utils.ce("p", {
+          width: "269px",
+          fontSize: "14px",
+          lineHeight: "24px",
+          marginTop: "25px",
+        });
+        p.textContent = item.keyword;
+        var p1 = Utils.ce("p", {
+          width: "73px",
+          height: "20px",
+          background: "url(./img/7day.png) no-repeat",
+          marginTop: "45px",
+        });
+        var div = Utils.ce("div", {
+          width: "270px",
+          height: "150px",
+          float: "left",
+          marginLeft: "10px",
+        });
+        div.appendChild(p);
+        div.appendChild(p1);
+        return div;
+      }
+      //创建价格容器
+      function createPrice(item) {
+        var div = Utils.ce("div", {
+          width: "127px",
+          fontSize: "16px",
+          textAlign: "center",
+          float: "left",
+          marginLeft: "320px",
+          marginTop: "26px",
+        });
+        var p1 = Utils.ce("p", {
+          fontSize: "14px",
+          color: "#9c9c9c",
+          textDecoration: "line-through",
+        });
+        p1.textContent = item.older;
+        var p2 = Utils.ce("p", {
+          color: "#333333",
+        });
+        p2.textContent = item.price;
+        div.appendChild(p1);
+        div.appendChild(p2);
+        return div;
+      }
+      //创建按钮和数量
+      function createNum(item) {
+        var div = Utils.ce("div", {
+          width: "200px",
+          float: "left",
+          marginTop: "25px",
+        });
+        inputNum = Utils.ce("input", {
+          width: "49px",
+          height: "28px",
+          border: "none",
+          border: "1px solid #aaaaaa",
+          textAlign: "center",
+          float: "left",
+        });
+        var span1 = Utils.ce("span", {
+          display: "inline-block",
+          width: "20px",
+          height: "28px",
+          lineHeight: "28px",
+          backgroundColor: "#f0f0f0",
+          border: "1px solid #e5e5e5",
+          float: "left",
+          textAlign: "center",
+          marginLeft: "58px",
+          cursor: "pointer",
+          userSelect: "none",
+        });
+        numList.push(span1);
+        numParentList.push(div);
+        var span2 = Utils.ce("span", {
+          display: "inline-block",
+          width: "20px",
+          height: "28px",
+          textAlign: "center",
+          lineHeight: "28px",
+          backgroundColor: "#f0f0f0",
+          border: "1px solid #e5e5e5",
+          float: "left",
+          userSelect: "none",
+          cursor: "pointer",
+        });
+        numList.push(span2);
+        inputNum.value = item.num;
+        inputNumList.push(inputNum);
+        span1.textContent = "-";
+        span2.textContent = "+";
+        span1.data = item;
+        span2.data = item;
+        span1.addEventListener("mouseenter", mouseHandler);
+        span1.addEventListener("mouseleave", mouseHandler);
+        span2.addEventListener("mouseenter", mouseHandler);
+        span2.addEventListener("mouseleave", mouseHandler);
+        span1.addEventListener("click", numClickHandler);
+        span2.addEventListener("click", numClickHandler);
+        div.appendChild(span1);
+        div.appendChild(inputNum);
+        div.appendChild(span2);
+        return div;
+      }
+      function numClickHandler(e) {
+        var index = numParentList.indexOf(this.parentElement);
+        var input = inputNumList[index];
+        if (this.textContent === "-") {
+          input.value--;
+          if (input.value <= 0) input.value = 1;
+          this.data.num = input.value;
+        } else if (this.textContent === "+") {
+          input.value++;
+          this.data.num = input.value;
+          if (input.value >= 99) input.value = 99;
+        }
+        divWrapList.forEach((item) => {
+          item.remove();
+          item = null;
+        });
+        console.log(divWrapList);
+        createGoodsList();
+      }
+      function mouseHandler(e) {
+        if (e.type === "mouseenter") {
+          this.style.borderColor = "#ff4400";
+        } else {
+          this.style.borderColor = "#e5e5e5";
+        }
+      }
+      //创建单类商品总价
+      function createPrice1(item) {
+        var div = Utils.ce("div", {
+          width: "140px",
+          float: "left",
+        });
+        amount = Utils.ce("p", {
+          color: "ff4400",
+          marginTop: "25px",
+          marginLeft: "15px",
+          color: "#ff4400",
+          fontWeight: "bolder",
+        });
+        amount.textContent =
+          "￥" +
+          (item.price.slice(1).toString() * inputNum.value.toString()).toFixed(
+            2
+          );
+        amountList.push(amount);
+        div.appendChild(amount);
+        return div;
+      }
+      //创建删除点击
+      function createDele() {
+        var div = Utils.ce("div", {
+          width: "233px",
+          float: "left",
+        });
+        var a1 = Utils.ce("a", {
+          display: "block",
+          textAlign: "center",
+          marginTop: "25px",
+          cursor: "pointer",
+        });
+        var a2 = Utils.ce("a", {
+          display: "block",
+          textAlign: "center",
+          marginTop: "12px",
+          cursor: "pointer",
+        });
+        a1.textContent = "移入收藏夹";
+        a2.textContent = "删除";
+        deleList.push(a2);
+        a1.addEventListener("mouseenter", deleMouseHanler);
+        a2.addEventListener("mouseenter", deleMouseHanler);
+        a1.addEventListener("mouseleave", deleMouseHanler);
+        a2.addEventListener("mouseleave", deleMouseHanler);
+        a2.addEventListener("click", deleClickHandler);
+        div.appendChild(a1);
+        div.appendChild(a2);
+        return div;
+      }
+      function deleMouseHanler(e) {
+        if (e.type === "mouseenter") {
+          this.style.color = "#ff4400";
+        } else {
+          this.style.color = "#000";
+        }
+      }
+      //点击删除删除对应商品列表
+      function deleClickHandler(e) {
+        var index = deleList.indexOf(this);
+        divWrapList[index].remove();
+        divWrapList[index] = null;
+      }
+      //商品列表选定点击事件
+      function ckClickHandler(e) {
+        var index = ckList.indexOf(this);
+        allchecked1.checked = allchecked2.checked = ckList.every(
+          (item, index) => {
+            return item.checked;
+          }
+        );
+        this.data.selected = this.checked;
+        var sum = Number(amountList[index].textContent.slice(1));
+        if (this.data.selected) {
+          count.textContent++;
+          total.textContent = (Number(total.textContent) + sum).toFixed(2);
+        } else {
+          count.textContent--;
+          total.textContent = (Number(total.textContent) - sum).toFixed(2);
+        }
+      }
+      //全选
+      function allck1ClickHandler(e) {
+        ckList.forEach((item, index) => {
+          item.checked = allchecked1.checked;
+          item.data.selected = allchecked1.checked;
+          var sum = Number(amountList[index].textContent.slice(1));
+          if (item.data.selected) {
+            count.textContent++;
+            total.textContent = (Number(total.textContent) + sum).toFixed(2);
+          } else {
+            count.textContent--;
+            total.textContent = (Number(total.textContent) - sum).toFixed(2);
+          }
+        });
+        allchecked2.checked = allchecked1.checked;
+      }
+      function allck2ClickHandler(e) {
+        ckList.forEach((item, index) => {
+          item.checked = allchecked2.checked;
+          item.data.selected = allchecked2.checked;
+          var sum = Number(amountList[index].textContent.slice(1));
+          if (item.data.selected) {
+            count.textContent++;
+            total.textContent = (Number(total.textContent) + sum).toFixed(2);
+          } else {
+            count.textContent--;
+            total.textContent = (Number(total.textContent) - sum).toFixed(2);
+          }
+        });
+        allchecked2.checked = allchecked2.checked;
+      }
+    </script>
+    <!-- 底部 -->
+    <iframe
+      src="./footer.html"
+      width="100%"
+      height="600px"
+      frameborder="0"
+      scrolling="no"
+      style="vertical-align: bottom;"
+    ></iframe>
+  </body>
+</html>

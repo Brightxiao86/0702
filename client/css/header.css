@@ -1,0 +1,79 @@
+header {
+  width: 100%;
+  height: 40px;
+  background-color: #f2f2f2;
+  border-bottom: 1px solid #e5e5e5;
+}
+header .top {
+  width: 1347px;
+  height: 100%;
+  line-height: 40px;
+  margin: auto;
+}
+header .top a:hover {
+  color: red;
+}
+header b {
+  display: inline-block;
+  position: absolute;
+  top: 17px;
+  right: 3px;
+  width: 0;
+  height: 0;
+  border: 4px solid #ccc;
+  border-color: #ccc transparent transparent transparent;
+  transform-origin: 50% 25%;
+}
+header .topLeft {
+  float: left;
+  height: 100%;
+}
+header .topLeft li {
+  font: 14px/40px tahoma, arial, "\5b8b\4f53";
+  color: #999;
+  float: left;
+}
+header .topLeft li a {
+  color: #999;
+  text-decoration: none;
+  display: inline-block;
+  margin-right: 24px;
+}
+header .topLeft > li:nth-child(1) {
+  margin-right: 24px;
+}
+header .topRight {
+  float: right;
+  height: 100%;
+  margin-left: 20px;
+}
+header .topRight li {
+  font: 14px/40px tahoma, arial, "\5b8b\4f53";
+  position: relative;
+  float: left;
+}
+header .topRight li a {
+  color: #999;
+  display: inline-block;
+  text-decoration: none;
+  margin-right: 14px;
+  margin-left: -3px;
+}
+header .topRight li a:hover b {
+  transition: all 1s;
+  transform: rotate(180deg);
+}
+header .topRight > li:nth-child(4) {
+  width: 0;
+  height: 14px;
+  border: 1px solid #ccc;
+  margin: 12px 2px 0 12px;
+}
+header .topRight > li:nth-child(2) a,
+header .topRight > li:nth-child(5) a {
+  margin: 0 10px;
+}
+header .topRight span {
+  color: red;
+  padding: 0 7px;
+}

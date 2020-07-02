@@ -1,0 +1,100 @@
+header {
+  width: 100%;
+  height: 110px; }
+  header .log {
+    width: 1488px;
+    height: 100%;
+    margin: 0 auto; }
+    header .log img {
+      padding-top: 38px; }
+
+article {
+  width: 100%;
+  height: 750px;
+  background-color: #f9bf93; }
+  article .image {
+    width: 1488px;
+    height: 100%;
+    position: relative;
+    margin: 0 auto;
+    background: url(https://img.alicdn.com/tfs/TB1cq4xGSf2gK0jSZFPXXXsopXa-1190-600.jpg) no-repeat;
+    background-size: cover; }
+    article .image .link1 {
+      position: absolute;
+      width: 700px;
+      height: 440px;
+      left: 160px;
+      top: 140px; }
+    article .image .signIn {
+      width: 378px;
+      height: 475px;
+      background-color: #fff;
+      position: absolute;
+      top: 114px;
+      right: 85px;
+      padding: 30px 30px 0 30px; }
+      article .image .signIn p {
+        height: 42px; }
+        article .image .signIn p a {
+          display: inline-block;
+          width: 80px;
+          height: 40px;
+          line-height: 50px;
+          font-size: 20px;
+          font-weight: bolder;
+          color: #000; }
+          article .image .signIn p a:first-child {
+            border-bottom: 2px solid #000; }
+      article .image .signIn ul {
+        width: 377px;
+        height: 18px;
+        padding-top: 22px; }
+        article .image .signIn ul li {
+          float: right; }
+          article .image .signIn ul li a {
+            display: block;
+            height: 18px;
+            color: #6c6c6c;
+            margin-right: 16px; }
+    article .image input {
+      width: 318px;
+      height: 51px;
+      border: 1px solid #f1eeee;
+      padding-left: 55px;
+      margin-top: 25px;
+      font-size: 18px; }
+    article .image label {
+      display: inline-block;
+      position: absolute;
+      width: 51px;
+      height: 51px; }
+      article .image label:first-of-type {
+        top: 98px;
+        left: 31px;
+        background: url(../img/user.png) no-repeat; }
+      article .image label:nth-of-type(2) {
+        background: url(../img/password.png) no-repeat;
+        top: 177px;
+        left: 31px; }
+    article .image [type="submit"] {
+      width: 375px;
+      height: 53px;
+      font-size: 20px;
+      color: #fff;
+      background-color: #ff0036;
+      border-radius: 5px;
+      border: none;
+      margin-top: 25px;
+      cursor: pointer; }
+
+.error {
+  width: 375px;
+  height: 32px;
+  text-align: center;
+  line-height: 32px;
+  background-color: burlywood;
+  border: 1px solid #ff0036;
+  margin-top: 6px;
+  display: none; }
+
+/*# sourceMappingURL=signIn.css.map */

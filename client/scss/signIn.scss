@@ -1,0 +1,117 @@
+header {
+  width: 100%;
+  height: 110px;
+  .log {
+    width: 1488px;
+    height: 100%;
+    margin: 0 auto;
+    img {
+      padding-top: 38px;
+    }
+  }
+}
+article {
+  width: 100%;
+  height: 750px;
+  background-color: rgb(249, 191, 147);
+  .image {
+    width: 1488px;
+    height: 100%;
+    position: relative;
+    margin: 0 auto;
+    background: url(https://img.alicdn.com/tfs/TB1cq4xGSf2gK0jSZFPXXXsopXa-1190-600.jpg)
+      no-repeat;
+    background-size: cover;
+    .link1 {
+      position: absolute;
+      width: 700px;
+      height: 440px;
+      left: 160px;
+      top: 140px;
+    }
+    .signIn {
+      width: 378px;
+      height: 475px;
+      background-color: #fff;
+      position: absolute;
+      top: 114px;
+      right: 85px;
+      padding: 30px 30px 0 30px;
+      p {
+        height: 42px;
+        a {
+          display: inline-block;
+          width: 80px;
+          height: 40px;
+          line-height: 50px;
+          font-size: 20px;
+          font-weight: bolder;
+          color: #000;
+          &:first-child {
+            border-bottom: 2px solid #000;
+          }
+        }
+      }
+      ul {
+        width: 377px;
+        height: 18px;
+        padding-top: 22px;
+        li {
+          float: right;
+          a {
+            display: block;
+            height: 18px;
+            color: #6c6c6c;
+            margin-right: 16px;
+          }
+        }
+      }
+    }
+    [type="text"] {
+      width: 318px;
+      height: 51px;
+      border: 1px solid #f1eeee;
+      padding-left: 55px;
+      margin-top: 25px;
+      font-size: 18px;
+    }
+    label {
+      display: inline-block;
+      position: absolute;
+      width: 51px;
+      height: 51px;
+      &:first-of-type {
+        top: 98px;
+        left: 31px;
+
+        background: url(../img/user.png) no-repeat;
+      }
+      &:nth-of-type(2) {
+        background: url(../img/password.png) no-repeat;
+        top: 177px;
+        left: 31px;
+      }
+    }
+    [type="submit"] {
+      width: 375px;
+      height: 53px;
+      font-size: 20px;
+      color: #fff;
+      background-color: #ff0036;
+      border-radius: 5px;
+      border: none;
+      margin-top: 25px;
+      cursor: pointer;
+    }
+  }
+}
+.error{
+  width:375px;
+  height: 32px;
+  text-align: center;
+  line-height: 32px;
+  background-color: burlywood;
+  border: 1px solid #ff0036;
+  margin-top: 6px;
+  display: none;
+}

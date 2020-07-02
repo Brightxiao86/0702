@@ -1,0 +1,441 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Document</title>
+    <link rel="stylesheet" href="./css/resper.css" />
+    <link rel="stylesheet" href="./css/header.css" />
+    <link rel="stylesheet" href="./icon/iconfont.css" />
+    <link rel="stylesheet" href="./css/details.css" />
+  </head>
+  <body>
+    <!-- 头部 -->
+    <header>
+      <div class="top">
+        <ul class="topLeft">
+          <li>喵，欢迎来天猫</li>
+          <li><a href="./signIn.html">请登录</a></li>
+          <li><a href="./signUp.html">免费注册</a></li>
+        </ul>
+        <ul class="topRight">
+          <li>
+            <a href="">我的淘宝<b></b></a>
+          </li>
+          <li>
+            <a href="./goodsList.html"
+              ><span class="iconfont">&#xe502;</span>购物车</a
+            >
+          </li>
+          <li>
+            <a href="">收藏夹<b></b></a>
+          </li>
+          <li></li>
+          <li>
+            <a href=""><span class="iconfont">&#xe52c;</span>手机版</a>
+          </li>
+          <li><a href="#">淘宝网</a></li>
+          <li>
+            <a href="">商家支持<b></b></a>
+          </li>
+          <li>
+            <a href=""><span class="iconfont">&#xe63b;</span>网站导航<b></b></a>
+          </li>
+        </ul>
+      </div>
+    </header>
+    <!-- 店面信息 搜索框 -->
+    <section class="searchWrap">
+      <div class="search">
+        <div class="log"><a href="homepage.html"><img src="./img/log1.png" alt="" /></a></div>
+        <div class="storeName">
+          <p><a href=""></a></p>
+          <p>
+            <span>品牌直销</span>
+            <a href="" class="service"></a>
+          </p>
+        </div>
+        <div class="describe">
+          <p>描&emsp;述&ensp;服&emsp;务&ensp;物&emsp;流</p>
+          <div class="starLevel">
+            <span></span><s></s><span></span
+            ><s><img src="./img/up.png" alt="" /></s><span></span
+            ><s><img src="./img/up.png" alt="" /></s>
+          </div>
+        </div>
+        <div class="seek">
+          <input type="text" placeholder="搜索 天猫 商品/品牌/店铺" />
+          <button>搜天猫</button>
+          <button>搜本店</button>
+        </div>
+      </div>
+    </section>
+
+    <!-- 数据生成导航条 -->
+    <div class="navWrap">
+      <ul class="nav"></ul>
+    </div>
+    <!-- 商品展示 -->
+    <div class="showWrap">
+      <article class="show">
+        <!-- 左侧图片详情 -->
+        <div class="showLeft">
+          <div class="medium">
+            <div class="zoom"></div>
+          </div>
+          <div class="max"></div>
+          <div class="mini">
+            <img src="#" alt="" />
+            <img src="#" alt="" />
+            <img src="#" alt="" />
+            <img src="#" alt="" />
+            <img src="#" alt="" />
+          </div>
+        </div>
+        <div class="showRight">
+          <!-- 商品关键字 -->
+          <h2></h2>
+          <!-- 价格 -->
+          <div class="price">
+            <span></span>
+          </div>
+          <!-- 运费 -->
+          <div class="freight">
+            <span>运费</span>
+            <span class="site">杭州</span><b></b>
+          </div>
+          <!-- 评价 -->
+          <div class="estimate">
+            <div><span>累计评价</span><b></b></div>
+            <div><span>送天猫积分</span><b></b></div>
+          </div>
+          <!-- 尺码 -->
+          <div class="size">
+            <span>尺码</span>
+          </div>
+          <!-- 颜色 -->
+          <div class="color"><b>颜色分类</b></div>
+          <!-- 数量 -->
+          <div class="count">
+            <span>数量</span><input type="text" name="" id="" value="1" />
+            <div><b></b><b></b></div>
+            <i>件</i>
+          </div>
+          <!-- 添加购买购物车 -->
+          <div class="buy">
+            <a href="">立即购买</a>
+            <a class="goodsList" href="javascript:viod(0)">加入购物车</a>
+          </div>
+          <!-- 补充信息 -->
+          <aside class="txtWrap">
+            <ul class="txt">
+              <li>服务承诺</li>
+              <li><a href="">正品保证</a></li>
+              <li><a href="">极速退款</a></li>
+              <li><a href="">七天无理由退换</a></li>
+              <li><a href="">支付方式</a><span></span></li>
+            </ul>
+            <p>
+              检测到您当前处于非安全网络环境，部分商品信息可能不准确，请在交易支付页面再次确认商品价格信息。
+            </p>
+          </aside>
+        </div>
+      </article>
+    </div>
+    <script type="module">
+      import Utils from "./js/Utils.js";
+      //slice() 方法可从已有的数组中返回选定的元素
+      //查找数据并将返回选中的数据
+      var search = location.search.slice(1);
+      //新建一个空数组
+      var dataFlow = "";
+      //设置变量
+      var counts,
+        count,
+        mediumList,
+        miniList,
+        medium,
+        zoom,
+        max,
+        prev,
+        prevColor;
+      // 创建ajax服务端交互
+      ajax("id", search);
+      function ajax(type, data) {
+        var xhr = new XMLHttpRequest();
+        xhr.addEventListener("readystatechange", readystateHandler);
+        xhr.open("POST", "http://localhost:8000/" + type);
+        xhr.send(JSON.stringify(data));
+        function readystateHandler(e) {
+          if (this.readyState === 4 && this.status === 200) {
+            dataFlow = JSON.parse(this.response)[0];
+            init();
+          }
+        }
+      }
+      function init() {
+        //获取店铺名称
+        var storeName = document.querySelector(".storeName a");
+        //获取店铺等级 并且转为数组
+        var startLeave = Array.from(
+          document.querySelectorAll(".starLevel span")
+        );
+        //获取导航条
+        var nav = document.querySelector(".nav");
+        //获取商品标题
+        var title = document.querySelector(".show h2");
+        //获取价格
+        var price = document.querySelector(".price span");
+        //获取评价积分 并且转为数组
+        var estimate = Array.from(document.querySelectorAll(".estimate b"));
+        //获取商品的大小
+        var size = document.querySelector(".size");
+        //获取商品的颜色
+        var color = document.querySelector(".color");
+        //获取商品的数量
+        count = document.querySelector(".count input");
+        //获取商品数量加减
+        counts = Array.from(document.querySelectorAll(".count b"));
+        //获取缩略图列表
+        miniList = Array.from(document.querySelectorAll(".mini img"));
+        //获取小图片容器
+        medium = document.querySelector(".medium");
+        //获取放大镜
+        zoom = document.querySelector(".zoom");
+        //获取大图片
+        max = document.querySelector(".max");
+        //获取购物车
+        var goodsList = document.querySelector(".goodsList");
+        //添加点击事件
+        goodsList.addEventListener("click", goodsHandler);
+        //循环
+        for (var i = 0; i < counts.length; i++) {
+          //当counts[i]是点击i项
+          counts[i].addEventListener("click", clickHandler);
+        }
+        //添加事件
+        count.addEventListener("input", inputHandler);
+        createStoreName(storeName);
+        createStarLevel(startLeave);
+        createNav(nav);
+        createtitle(title);
+        createPrice(price);
+        createEstimate(estimate);
+        createSize(size);
+        createColor(color);
+        createImage(miniList);
+      }
+      //店铺名称
+      function createStoreName(storeName) {
+        storeName.textContent = dataFlow["name"];
+      }
+      //店铺的等级
+      function createStarLevel(startLeave) {
+        //循环
+        startLeave.forEach(function (item, index) {
+          item.textContent = dataFlow.star[index];
+        });
+      }
+      //导航条
+      function createNav(nav, storeName) {
+        dataFlow.nav.forEach(function (item, index) {
+          //创建li标签
+          var i = document.createElement("li");
+          //创建a标签
+          var a = document.createElement("a");
+          a.textContent = item;
+          i.appendChild(a);
+          nav.parentElement.style.backgroundColor = dataFlow.navbj;
+          nav.appendChild(i);
+        });
+      }
+      //商品标题
+      function createtitle(title) {
+        title.textContent = dataFlow.title;
+      }
+      //商品价格
+      function createPrice(price) {
+        price.textContent = dataFlow.price;
+      }
+      //评价积分
+      function createEstimate(estimate) {
+        estimate.forEach(function (item, index) {
+          estimate[index].textContent = dataFlow.estimate[index];
+        });
+      }
+      //商品颜色列表
+      function createColor(color) {
+        dataFlow.color.forEach(function (item) {
+          var span = Utils.ce("sapn", {
+             width: "36px",
+            height: "36px",
+            border: "2px solid #FBD0D0",
+            display: "inline-block",
+            background: `url(./img/${item}) no-repeat`,
+            backgroundSize: "cover",
+          });
+          span.addEventListener("click", mouserColorHandler);
+          span.addEventListener("mouseenter", mouserColorHandler);
+          span.addEventListener("mouseleave", mouserColorHandler);
+          color.appendChild(span);
+        });
+      }
+
+      //创建商品大小
+      function createSize(size) {
+        if (!dataFlow.size) {
+          //隐藏
+          size.style.display = "none";
+          //显示
+        } else {
+          size.style.display = "block";
+          //循环遍历
+          dataFlow.size.forEach(function (item, index) {
+            var b = Utils.ce("b", {
+              width: "36px",
+              height: "36px",
+              border: "2px solid #b8b7bd",
+              display: "inline-block",
+              textAlign: "center",
+              lineHeight: "36px",
+              marginTop: "20px",
+              marginRight: "8px",
+              cursor: "pointer",
+              color: "#000",
+              userSelect: "none",
+            });
+            //添加事件
+            b.addEventListener("mouseenter", mouserHandler);
+            b.addEventListener("mouseleave", mouserHandler);
+            b.addEventListener("click", mouserHandler);
+            b.textContent = item;
+            size.appendChild(b);
+          });
+        }
+      }
+      //创建商品图片的边框 当鼠标放在上面 就显示边框 否则就不显示
+      function mouserHandler(e) {
+        if (e.type === "mouseenter") {
+          this.style.border = "2px solid #ff0036";
+        } else if (e.type === "mouseleave") {
+          if (this.click) {
+            this.style.border = "2px solid #b8b7bd";
+          } else {
+            this.style.border = "2px solid #ff0036";
+          }
+        } else if (e.type === "click") {
+          if (prev && prev !== this) {
+            prev.style.border = "2px solid #b8b7bd";
+            prev.click = true;
+          }
+          prev = this;
+          this.click = !this.click;
+          this.style.border = "2px solid #ff0036";
+        }
+      }
+      //商品颜色选项变色
+      function mouserColorHandler(e) {
+        if (e.type === "mouseenter") {
+          this.style.border = "2px solid #ff0036";
+        } else if (e.type === "mouseleave") {
+          if (this.click) {
+            this.style.border = "2px solid #b8b7bd";
+          } else {
+            this.style.border = "2px solid #ff0036";
+          }
+        } else if (e.type === "click") {
+          if (prevColor) {
+            prevColor.style.border = "2px solid #b8b7bd";
+            prev.click = true;
+          }
+          prevColor = this;
+          this.click = false;
+          this.style.border = "2px solid #ff0036";
+        }
+      }
+      function inputHandler(e) {}
+      //创建点击商品数量的功能
+      function clickHandler(e) {
+        e.stopPropagation();
+        var index = counts.indexOf(e.currentTarget);
+        switch (index) {
+          case 0:
+            count.value++;
+            if (count.value >= 99) count.value = 99;
+            break;
+          case 1:
+            count.value--;
+            if (count.value <= 1) count.value = 1;
+            break;
+        }
+      }
+      //创建放大镜  把图片分别放进 mini medium max里面
+      function createImage(mini) {
+        medium.style.backgroundImage =
+          "url(./img/" + dataFlow.src["medium"][0] + ")";
+        medium.style.backgroundRepeat = "no-repeat";
+        medium.style.backgroundSize = "contain";
+        max.style.backgroundImage = "url(./img/" + dataFlow.src["max"][0] + ")";
+        max.style.backgroundRepeat = "no-repeat";
+        max.style.backgroundSize = "200% 200%";
+        medium.addEventListener("mouseenter", mediumMouseHandler);
+        medium.addEventListener("mouseleave", mediumMouseHandler);
+        medium.addEventListener("mousemove", mediumMouseHandler);
+        var list = dataFlow.src["mini"];
+        list.forEach(function (item, index) {
+          mini[index].src = `./img/${item}`;
+          mini[index].addEventListener("mouseenter", miniMouseHandler);
+        });
+      }
+      //创建点击小图改变常规背景图
+      function miniMouseHandler(e) {
+        var index = miniList.indexOf(e.currentTarget);
+        medium.style.backgroundImage =
+          "url(./img/" + dataFlow.src["medium"][index] + ")";
+        max.style.backgroundImage =
+          "url(./img/" + dataFlow.src["max"][index] + ")";
+      }
+      //创建当鼠标放在背景图的位置上 显现放大图
+      function mediumMouseHandler(e) {
+        if (e.type === "mouseenter") {
+          zoom.style.display = max.style.display = "block";
+        } else if (e.type === "mouseleave") {
+          zoom.style.display = max.style.display = "none";
+        } else if (e.type === "mousemove") {
+          move(e.clientX, e.clientY);
+        }
+      }
+      //鼠标移动放大镜移动
+      function move(clientX, clientY) {
+        var rect = medium.getBoundingClientRect();
+        var zoomX = zoom.getBoundingClientRect().width;
+        var zoomY = zoom.getBoundingClientRect().height;
+        var maxX = max.getBoundingClientRect().width;
+        var maxY = max.getBoundingClientRect().height;
+        var X = clientX - rect.x - zoomX / 2;
+        var Y = clientY - rect.y - zoomY / 2;
+        if (X < 0) X = 0;
+        if (X > rect.width - zoomX) X = rect.width - zoomX; //保证放大镜只在图片显示区域
+        if (Y < 0) Y = 0;
+        if (Y > rect.height - zoomY) Y = rect.height - zoomY;
+        zoom.style.left = X + "px";
+        zoom.style.top = Y + "px";
+        max.style.backgroundPositionX = -X * (maxX / zoomX) + "px";
+        max.style.backgroundPositionY = -Y * (maxY / zoomY) + "px";
+      }
+      //点击购物车跳转页面
+      function goodsHandler(e) {
+        window.location.href = "./goodsList.html" + "?" + search;
+      }
+    </script>
+    <!-- 底部 -->
+    <iframe
+      src="./footer.html"
+      width="100%"
+      height="600px"
+      frameborder="0"
+      scrolling="no"
+      style="vertical-align: bottom;"
+    ></iframe>
+  </body>
+</html>

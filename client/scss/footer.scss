@@ -1,0 +1,127 @@
+
+.footer-wrap {
+  min-height: 353px; }
+
+.foo-top {
+  width: 1188px;
+  height: 100px;
+  padding: 21px;
+  margin: auto; }
+  .foo-top > a {
+    display: block;
+    float: left;
+    width: 297px;
+    height: 100px;
+    background: url(../img/footer-top.jpg) no-repeat;
+    background-position: 40px 0; }
+  .foo-top > a:nth-child(2) {
+    background-position: -224px 0; }
+  .foo-top > a:nth-child(3) {
+    background-position: -500px 0; }
+  .foo-top > a:nth-child(4) {
+    background-position: -770px 0; }
+
+.foo-link {
+  height: 190px;
+  padding-top: 22px;
+  width: 1190px;
+  margin: 0 20px;
+  border-top: 1px solid #cccccc;
+  margin: auto; }
+
+.link-nav {
+  float: left;
+  width: 186px;
+  min-height: 90px;
+  padding: 0 0 0 52px;
+  font-size: 12px; }
+  .link-nav > img {
+    width: 105px;
+    height: 105px; }
+  .link-nav > li {
+    text-align: left;
+    width: 100px;
+    height: 20px;
+    line-height: 20px;
+    margin: 10px 0px 0px 0px ;
+   }
+    .link-nav > li > a {
+      font-size: 20px;
+      color: #8b8b8b; }
+  .link-nav > .link-frist {
+    height: 30px;
+    font-size: 22px;
+    color: #646464;
+    font-weight: bold; }
+
+.maotou{
+  width: 200px;
+}
+.maotou img {
+  width: 103px;
+  height: 37px;
+  position: relative;
+  top: 0px;
+  left: 403px;
+}
+footer {
+  width: 100%;
+  height: 294px;
+  border-top: 3px solid #ff0036;
+  background-color: black;
+}
+
+.footerCont {
+  width: 1358px;
+  height: 100%;
+  font-size: 16px;
+  margin: 0 auto;
+  color: #fff;
+}
+.footerCont h4 {
+  height: 41px;
+  line-height: 41px;
+}
+.footerCont h4 a {
+  color: #fff;
+  margin-right: 3px;
+}
+.footerCont p {
+  height: 47px;
+  line-height: 47px;
+}
+.footerCont p a {
+  margin-right: 3px;
+  color: #fff;
+}
+.footerCont .copy {
+  line-height: 25px;
+  height: 206px;
+  font-size: 14px;
+  color: #959595;
+}
+.footerCont .copy a {
+  color: #959595;
+  margin-right: 86px;
+}
+.footerCont .copy a img {
+  display: inline-block;
+}
+.footerCont .copy span {
+  margin-right: 86px;
+}
+.footerCont .copy p {
+  padding: 12px 0 10px;
+}
+.footerCont .copy p img {
+  display: inline-block;
+}
+.footerCont .copy p img:nth-child(1) {
+  width: 32px;
+  height: 32px;
+}
+.footerCont .copy p img:nth-child(3) {
+  width: 84px;
+  height: 32px;
+}
+

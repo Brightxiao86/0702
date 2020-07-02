@@ -1,0 +1,114 @@
+地址:10.9.26.221:3008
+发送方式 POST
+数据类型 JSON
+
+1\商品列表
+    req
+       {
+            type:0x01
+       }
+
+    res
+        {
+            type:0x01,
+            result:[
+                商品数据对象1...
+                商品数据对象2...
+                商品数据对象3...
+                商品数据对象4...
+                商品数据对象5...
+            ]
+            error:null
+        }
+
+2\购物车列表
+    req
+    {
+        type:0x02
+    }
+
+    res
+    {
+        type:0x02,
+         result:[
+                选购商品数据对象1...
+                选购商品数据对象2...
+                选购商品数据对象3...
+                选购商品数据对象4...
+                选购商品数据对象5...
+            ]
+            error:null
+    }
+3\添加商品
+    req
+    {
+        type:0x03,
+        goodsId:1001
+    }
+
+    res
+    {
+        type:0x03,
+         result:[
+                选购商品数据对象1...
+                选购商品数据对象2...
+                选购商品数据对象3...
+                选购商品数据对象4...
+                选购商品数据对象5...
+            ]
+            error:null
+    }
+4\修改商品数量
+    req
+    {
+         type:0x04,
+          goodsId:1001,
+          num:3
+    }
+
+    res
+    {
+        type:0x04,
+        result:{
+            goodsId:1001,
+            num:3
+        }
+         error:null
+    }
+5\删除商品
+    req
+    {
+        type:0x05,
+          goodsIds:[1001]
+    }
+
+     res
+    {
+        type:0x05,
+         result:[
+                选购商品数据对象1...
+                选购商品数据对象2...
+                选购商品数据对象3...
+                选购商品数据对象4...
+                选购商品数据对象5...
+            ]
+            error:null
+    }
+6\选中商品
+
+    req
+    {
+         type:0x06,
+          goodsIds:[1001],
+          selected:false
+    }
+
+    res
+    {
+        type:0x06,
+         result:{
+              goodsIds:[1001],
+            selected:false
+         }
+         error:null
+    }
